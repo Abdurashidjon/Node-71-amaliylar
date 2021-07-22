@@ -5,6 +5,7 @@ const customersRoute = require('./routes/customers');
 const coursesRoute = require('./routes/courses');
 const entrollmentRoute = require('./routes/enrollment');
 const usersRoute = require('./routes/users')
+const authRoute = require('./routes/auth')
 const mongoose = require('mongoose');
 
 
@@ -23,6 +24,7 @@ app.use('/api/customers',customersRoute);
 app.use('/api/courses',coursesRoute);
 app.use('/api/enrollment', entrollmentRoute);
 app.use('/api/users', usersRoute)
+app.use('/api/auth', authRoute)
  
 const port = process.env.PORT || 5000;
  app.listen(port,()=>{
