@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
 const Joi = require('joi'); 
-const bcrypt = require('bcrypt');\
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 
 
 router.post('/', async (req, res) => {
@@ -19,7 +19,8 @@ router.post('/', async (req, res) => {
     const isValidPassword = bcrypt.compare(req.body.password, user.password);
     if(!isValidPassword)
     return res.status(400).send('Email yoki parol notugri ');
-    res.send(true);
+  const token = user.generateAuthToken();
+  res.header('x-auth-token',token).send(true);
 });
 
 function validate(req) {
@@ -30,4 +31,4 @@ function validate(req) {
     return schema.validate(req);
 }
 
-module.exports = router;
+module.exports = router;    

@@ -5,7 +5,7 @@ const categorySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        minlength: 3,
+        minlength: 5,
         maxlength: 50
     }
 });
@@ -18,6 +18,7 @@ function validateCategory(category) {
             Joi
                 .string()
                 .min(3)
+                .max(50)
                 .required()
     });
     return schema.validate(category);
@@ -26,4 +27,4 @@ function validateCategory(category) {
 
 
 exports.Category = Category;
-exports.validate = validateCategory; 
+exports.validate = validateCategory;
